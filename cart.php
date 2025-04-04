@@ -71,7 +71,7 @@
                              <td><?=$item['price']?></td>
                              <td><?=$item['Quantity']?></td>
                              <td>$<?=$item['total']?></td>
-                             <td> <form action="/../329/pms-front/handelers/delet_product.php" method="post">
+                             <td> <form action="handelers/delet_product.php" method="post">
                             <input name="deletitem" type="hidden" value=<?= $index?>>
                             <input class="btn btn-danger" type="submit" value="Delete">
                            

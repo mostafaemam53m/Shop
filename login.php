@@ -5,7 +5,7 @@
               <?=show_message();?>
 
             <h2 class="text-center">Login</h2>
-            <form action="..\pms-front\handelers\login_handler.php" method="POST" class="pb-5 mb-5">
+            <form action="handelers\login_handler.php" method="POST" class="pb-5 mb-5">
                
                 <div class="mb-3">
                     <label for="email" class="form-label">Email address</label>

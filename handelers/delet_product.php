@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // to excute delet on cart session and pure session(the session that dont has repeat name of product)
     delet_item_array($id); 
    
-    header("Location: /329/pms-front/cart.php"); 
+    header("Location: ../cart.php"); 
     exit();
 }
 
