@@ -195,9 +195,9 @@ function store_contact_data($name,$email,$message){
         "message"=>$message
     ];
 
-    $contact_data[]= $new_contact;
+    $contact[]= $new_contact;
 
-    file_put_contents($file,json_encode($contact_data,JSON_PRETTY_PRINT));
+    file_put_contents($file,json_encode($contact,JSON_PRETTY_PRINT));
 
 }
 
@@ -223,9 +223,9 @@ function store_check_out_data($name,$email,$address,$phone,$notes){
 
     ];
 
-    $my_check_out_data[]= $new_check_out_data;
+    $check_out_data[] = $new_check_out_data;
 
-    file_put_contents($file,json_encode($my_check_out_data,JSON_PRETTY_PRINT));
+    file_put_contents($file,json_encode($check_out_data,JSON_PRETTY_PRINT));
 
 }
 
