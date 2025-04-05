@@ -9,13 +9,13 @@ function validfiled($filed,$Value){
 }
 
 // check uer name
-function check_user_name($user){
+function check_user_name($user) {
+   
+    $pattern = "/^[\p{Arabic}a-zA-Z0-9]([\p{Arabic}a-zA-Z0-9_]{3,18})[\p{Arabic}a-zA-Z0-9]$/u";
 
-    $pattern = "/^[a-zA-Z0-9]([a-zA-Z0-9_]{3,18})[a-zA-Z0-9]$/";
-
-
-    return preg_match($pattern,$user)? null: "Please Enter Correct User Name";
+    return preg_match($pattern, $user) ? null : "Please Enter Correct User Name";
 }
+
 
 // check adress
 function check_address($address){
