@@ -1,0 +1,102 @@
+
+# شرح مفصل لـ MySQL وعمليات Authentication و Authorization
+
+## مقدمة
+
+في عالم إدارة قواعد البيانات وتطبيقات الويب، تُعد **MySQL** من أشهر أنظمة إدارة قواعد البيانات، في حين تُعد **المصادقة (Authentication)** و**التفويض (Authorization)** من الركائز الأساسية لتأمين البيانات. هذا الدليل يقدم شرحًا مفصلًا مدعومًا بالصور، بلغة بسيطة يفهمها الجميع.
+
+---
+
+## أولًا: ما هو MySQL؟
+
+MySQL هو نظام مفتوح المصدر لإدارة قواعد البيانات العلائقية (Relational Database). يستخدم لغة SQL لتنفيذ الأوامر. يُستخدم في ملايين التطبيقات والمواقع مثل WordPress وFacebook.
+
+### خصائص MySQL:
+- مجاني ومفتوح المصدر
+- يعمل على جميع الأنظمة مثل Windows وLinux وMac
+- يدعم قواعد بيانات ضخمة
+- سريع في التنفيذ
+
+![MySQL Architecture](https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/MySQL.svg/800px-MySQL.svg.png)
+
+---
+
+## ثانيًا: المصادقة (Authentication) في MySQL
+
+### ما المقصود بالمصادقة؟
+هي عملية التحقق من هوية المستخدم. هل هذا الشخص هو فعلاً من يدّعي أنه هو؟ في MySQL، يتم هذا من خلال اسم المستخدم وكلمة المرور.
+
+### كيف تعمل المصادقة في MySQL؟
+- عندما تحاول الدخول إلى قاعدة البيانات، يسألك MySQL عن اسم المستخدم وكلمة المرور.
+- يتأكد من أن هذه البيانات مسجلة لديه.
+- إن كانت صحيحة، يسمح لك بالدخول.
+
+### طرق المصادقة:
+- **كلمة المرور العادية (mysql_native_password)**: الطريقة التقليدية.
+- **المصادقة عبر socket (auth_socket)**: يعتمد على نظام التشغيل.
+- **المصادقة المشفرة (caching_sha2_password)**: أكثر أمانًا.
+
+### مثال:
+إذا كان لديك المستخدم `admin` في MySQL، يمكن تسجيله هكذا:
+```sql
+CREATE USER 'admin'@'localhost' IDENTIFIED BY 'yourpassword';
+```
+
+---
+
+## ثالثًا: التفويض (Authorization) في MySQL
+
+### ما المقصود بالتفويض؟
+بعد أن يعرف النظام من أنت، يأتي دور تحديد ما يُسمح لك بفعله. هل يمكنك فقط قراءة البيانات؟ أم التعديل؟ أم الحذف؟
+
+### كيف يعمل؟
+- يتم منح صلاحيات (Privileges) للمستخدم.
+- مثال: صلاحية SELECT تسمح بقراءة البيانات فقط.
+
+### منح الصلاحيات:
+```sql
+GRANT SELECT, INSERT ON mydatabase.* TO 'admin'@'localhost';
+```
+
+### سحب الصلاحيات:
+```sql
+REVOKE DELETE ON mydatabase.* FROM 'admin'@'localhost';
+```
+
+![MySQL Privileges](https://cdn.educba.com/academy/wp-content/uploads/2020/01/MySQL-User-Permissions.png)
+
+---
+
+## رابعًا: المصادقة في GitHub
+
+### ما هي GitHub؟
+GitHub هو موقع لإدارة الأكواد البرمجية باستخدام نظام git. يتيح التعاون بين المبرمجين والعمل على مشاريع مفتوحة المصدر.
+
+### كيف تتم المصادقة؟
+GitHub يتحقق من هويتك بعدة طرق:
+
+1. **Personal Access Tokens (PAT)**: رمز سري بديل لكلمة المرور.
+2. **SSH Keys**: مفتاح خاص تربطه بجهازك.
+3. **OAuth**: تستخدمه التطبيقات الخارجية للوصول لحسابك بإذنك.
+
+![GitHub Auth](https://docs.github.com/assets/images/help/settings/personal-access-token.png)
+
+---
+
+## خامسًا: التفويض في GitHub
+
+بعد تأكيد هويتك، GitHub يمنحك صلاحيات للوصول للمستودعات.
+
+### أنواع الصلاحيات:
+- **Read**: قراءة الكود فقط.
+- **Write**: تعديل الملفات.
+- **Admin**: التحكم الكامل (مثل حذف المستودع).
+
+### التفويض للتطبيقات:
+- يتم من خلال OAuth Apps
+- يُطلب منك إعطاء صلاحيات محددة (Scopes)
+
+![GitHub Permissions](https://docs.github.com/assets/images/help/settings/repo-permissions.png)
+
+---
+
